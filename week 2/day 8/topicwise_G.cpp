@@ -1,39 +1,60 @@
-#include <iostream>
-#include <unordered_map>
-#include <string>
+//{ Driver Code Starts
+//Initial template for C++
+
+#include <bits/stdc++.h>
 using namespace std;
 
-int longestKSubstr(string s, int k) {
-    if (k <= 0) return -1;
-    if (s.empty()) return -1;
+// } Driver Code Ends
+//User function template for C++
 
-    int left = 0, max_length = -1;
-    unordered_map<char, int> char_count;
-
-    for (int right = 0; right < s.length(); ++right) {
-        char_count[s[right]]++;
-
-        while (char_count.size() > k) {
-            char_count[s[left]]--;
-            if (char_count[s[left]] == 0)
-                char_count.erase(s[left]);
-            left++;
+class Solution{
+  public:
+    int longestKSubstr(string s, int k) 
+    {
+        int n = s.length();
+        if (n < k)
+        {
+            return -1;
         }
 
-        max_length = max(max_length, right - left + 1);
-    }
+        int ans = -1;
+        map<char,int> mp;
+        int l = 0, r = 0;
+        while(r < n)
+        {
+            mp[s[r]]++;
+            while(mp.size() > k)
+            {
+                mp[s[l]]--;
+                if (mp[s[l]] == 0)
+                {
+                    mp.erase(s[l]);
+                }
+                l++;
+            }
+            if(mp.size() == k)
+            {
+                ans = max(ans, r - l + 1);
+            }
+            r++;
+        }
 
-    return (max_length != -1) ? max_length : -1;
-}
+        return ans;
+  }
+};
 
+//{ Driver Code Starts.
 int main() {
-    string S1 = "aabacbebebe";
-    int K1 = 3;
-    cout << longestKSubstr(S1, K1) << endl;  // Output: 7
-
-    string S2 = "aaaa";
-    int K2 = 2;
-    cout << longestKSubstr(S2, K2) << endl;  // Output: -1
-
-    return 0;
+    int t;
+    cin >> t;
+    while (t--) {
+        string s;
+        cin >> s;
+        int k;
+        cin >> k;
+        Solution ob;
+        cout << ob.longestKSubstr(s, k) << endl;
+    }
 }
+
+// } Driver Code Ends
