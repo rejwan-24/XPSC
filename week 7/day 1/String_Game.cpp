@@ -27,7 +27,6 @@ int main()
        int mn = min(one,zero);
        if(mn % 2 == 0) cout<<"Ramos"<<endl;
        else cout<<"Zlatan"<<endl;
-      // cout << (mn%2==0 ? "Ramos" : "Zlatan") << "\n";
     }
     return 0;
 }
