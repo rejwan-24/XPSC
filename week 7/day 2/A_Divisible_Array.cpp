@@ -18,7 +18,9 @@ int main()
     return 0;
 }
 
-/*
+// it can solve this way ->
+
+/* 
 #include<bits/stdc++.h>
 using namespace std;
 #define ll long long 
